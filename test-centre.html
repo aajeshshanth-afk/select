@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SelectiCore — Test Centre</title><style>
+:root{--navy:#0d1738;--navy2:#18264d;--blue:#315bd6;--blue2:#3f65dc;--ink:#18213a;--muted:#737c8e;--line:#e1e5ed;--bg:#f5f7fb;--white:#fff;--shadow:0 8px 24px rgba(17,31,67,.07)}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg)}
+a{color:inherit;text-decoration:none}
+.app{min-height:100vh;display:flex}.sidebar{width:334px;background:var(--navy);color:#fff;position:fixed;left:0;top:0;bottom:0;padding:26px 18px;z-index:10}.brand{padding:0 18px 26px}.brand strong{display:block;font-size:31px;line-height:1;font-weight:900;letter-spacing:-1.4px}.brand span{display:block;color:#aeb8d1;font-size:16px;margin-top:12px;letter-spacing:.1px}.nav{display:flex;flex-direction:column;gap:7px}.nav a{display:flex;align-items:center;gap:13px;padding:14px 17px;border-radius:13px;color:#cbd2e3;font-size:16px;transition:.15s}.nav a:hover{background:#172549;color:#fff}.nav a.active{background:#293a63;color:#fff}.nav .ico{width:22px;text-align:center;font-size:18px}
+.main{margin-left:334px;width:calc(100% - 334px);padding:0 32px 36px}.top{height:86px;display:flex;align-items:center;gap:20px}.search{height:56px;flex:1;background:#fff;border:1px solid #dfe4ed;border-radius:17px;box-shadow:0 2px 8px rgba(20,30,60,.03);padding:0 23px;font-size:15px;color:var(--ink);outline:none}.search::placeholder{color:#a0a6b3}.avatar{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#405ee1,#5549df);color:#fff;font-size:20px;font-weight:800;box-shadow:0 6px 15px rgba(49,91,214,.2)}
+.hero{background:linear-gradient(120deg,#172857 0%,#315bd6 100%);border-radius:23px;padding:43px 40px 39px;color:#fff;box-shadow:0 13px 28px rgba(25,53,120,.12)}.eyebrow{font-size:16px;letter-spacing:1px;color:#cbd5f1;margin-bottom:5px}.hero h1{font-size:39px;line-height:1.1;margin:0 0 21px;letter-spacing:-1.4px}.hero p{font-size:19px;line-height:1.5;color:#dce4f6;max-width:1120px;margin:0 0 22px}.actions{display:flex;gap:13px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:47px;padding:0 20px;border-radius:13px;background:#3863dc;color:#fff;font-weight:800;border:0;cursor:pointer}.btn.light{background:#fff;color:#26324c}.btn:hover{filter:brightness(.98);transform:translateY(-1px)}
+.panel{background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:28px 26px}.mt{margin-top:22px}.panel h2{font-size:29px;letter-spacing:-.7px;margin:0 0 8px}.panel .sub{margin:0;color:var(--muted);font-size:16px}.quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:23px}.quick{min-height:47px;border-radius:13px;background:#3860d5;color:#fff;display:flex;align-items:center;justify-content:center;gap:9px;font-weight:800}.quick:hover{background:#3158cc;transform:translateY(-1px)}
+.path{padding:27px 26px}.path h2{font-size:29px}.path p{font-size:17px;margin:0;color:var(--muted)}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:0}.metric{min-height:156px;display:flex;flex-direction:column;justify-content:center}.label{font-size:14px;color:#7a8291;text-transform:uppercase;letter-spacing:.8px}.value{font-size:40px;font-weight:900;line-height:1.05;margin-top:8px;letter-spacing:-1px}.focus{font-size:25px;line-height:1.1}.progress{height:10px;background:#e8ebf3;border-radius:99px;overflow:hidden;margin-top:18px;width:220px;max-width:100%}.progress i{display:block;height:100%;width:0%;background:linear-gradient(90deg,#3761da,#6951e6);border-radius:99px}.section-head{display:flex;align-items:center;justify-content:space-between;gap:20px}.footer{padding:30px 4px 0;text-align:center;color:#8a91a0;font-size:13px}
+@media(max-width:1050px){.sidebar{width:250px}.main{margin-left:250px;width:calc(100% - 250px)}.quick-grid,.metrics{grid-template-columns:repeat(2,1fr)}}@media(max-width:720px){.sidebar{position:static;width:100%;height:auto;padding:18px}.app{display:block}.brand{padding-bottom:15px}.nav{display:grid;grid-template-columns:repeat(2,1fr)}.main{margin:0;width:100%;padding:0 15px 28px}.top{height:auto;padding:15px 0}.hero{padding:30px 25px}.hero h1{font-size:32px}.hero p{font-size:16px}.quick-grid,.metrics{grid-template-columns:1fr}.actions{flex-direction:column}.avatar{display:none}}
+
+.test-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:22px}
+.test-card{border:1px solid var(--line);border-radius:18px;padding:22px;background:#fff;cursor:pointer;transition:.15s;box-shadow:var(--shadow)}
+.test-card:hover,.test-card.selected{border-color:#315bd6;box-shadow:0 10px 25px rgba(49,91,214,.12);transform:translateY(-2px)}
+.test-card .icon{font-size:30px;margin-bottom:10px} .test-card h3{margin:0 0 7px;font-size:20px} .test-card p{margin:0;color:var(--muted);line-height:1.5}
+.controls{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:22px} .select{height:46px;padding:0 13px;border:1px solid var(--line);border-radius:12px;background:#fff;font:inherit;color:var(--ink)}
+.quiz-card{background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:28px} .question{font-size:24px;font-weight:800;line-height:1.35} .option{display:block;width:100%;text-align:left;padding:15px 17px;margin-top:11px;border:1px solid var(--line);background:#fff;border-radius:12px;font:inherit;cursor:pointer} .option:hover{border-color:#315bd6;background:#f6f8ff} .option.correct{border-color:#2e9b62;background:#eef9f2} .option.wrong{border-color:#d84b5b;background:#fff0f2} .strategy{margin-top:16px;padding:14px 16px;background:#f5f7fb;border-radius:12px;color:#4f586b;line-height:1.5}
+.empty{text-align:center;padding:42px 20px} .kpi{font-size:58px;font-weight:900;letter-spacing:-2px;color:#315bd6}
+@media(max-width:720px){.test-grid{grid-template-columns:1fr}}
+.feedback{margin-top:22px;border:1px solid #dfe5f0;border-radius:18px;background:#f8faff;padding:20px}
+.feedback-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.feedback-title{font-size:21px;font-weight:900;letter-spacing:-.3px}.feedback-badge{padding:7px 11px;border-radius:999px;background:#e9f7ef;color:#177245;font-weight:800;font-size:13px}.feedback-badge.warn{background:#fff2e5;color:#9a5411}.feedback-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.feedback-item{background:#fff;border:1px solid #e2e7ef;border-radius:13px;padding:14px}.feedback-item b{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.7px;color:#788397;margin-bottom:5px}.feedback-item p{margin:0;line-height:1.55;color:#26324a}.feedback-next{margin-top:13px;padding:14px 16px;border-radius:13px;background:#edf3ff;color:#24468f;line-height:1.55}.feedback-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:13px}.feedback-actions button{border:0;cursor:pointer}.writing-score{font-size:24px;font-weight:900;color:#315bd6}.rubric-row{display:grid;grid-template-columns:160px 1fr 52px;gap:10px;align-items:center;margin:9px 0}.rubric-bar{height:8px;background:#e7ebf2;border-radius:99px;overflow:hidden}.rubric-bar i{display:block;height:100%;background:linear-gradient(90deg,#3761da,#6951e6);border-radius:99px}.rubric-row small{color:#687287;text-align:right;font-weight:800}.timer-warn{color:#a44d0d!important}
+@media(max-width:720px){.feedback-grid{grid-template-columns:1fr}.rubric-row{grid-template-columns:120px 1fr 45px}}
+
+
+.quiz-head{display:flex;justify-content:space-between;gap:15px;align-items:center;color:#667085;font-weight:800;font-size:14px;margin-bottom:16px}.bar{height:8px;background:#e8ebf3;border-radius:99px;overflow:hidden;margin-bottom:20px}.bar i{display:block;height:100%;background:linear-gradient(90deg,#3761da,#6951e6);border-radius:99px}.question-number{font-size:13px;color:#7b8495;margin-bottom:12px}.writing-box{margin-top:18px}.writing-box textarea{width:100%;min-height:330px;resize:vertical;border:1px solid #dfe4ed;border-radius:14px;padding:17px;font:16px/1.6 inherit;color:var(--ink);outline:none}.writing-box textarea:focus{border-color:#315bd6;box-shadow:0 0 0 3px #315bd61c}.writing-meta{display:flex;justify-content:space-between;align-items:center;margin-top:12px;color:var(--muted);font-size:14px}.secondary{background:#edf3ff;color:#1746a0}
+
+.reading-passage{margin:0 0 20px;padding:20px 22px;background:#f7f9fd;border:1px solid #dfe5ef;border-radius:16px}.passage-label{font-size:12px;text-transform:uppercase;letter-spacing:.8px;font-weight:900;color:#315bd6;margin-bottom:9px}.passage-text{font:17px/1.7 Georgia,serif;color:#26324a;white-space:pre-wrap}.reading-part{margin-top:16px}.part-label{font-size:18px;font-weight:800;line-height:1.45;margin-bottom:8px}.reading-instructions{margin-bottom:16px;color:#596579;line-height:1.5}
+</style><style>
+.mega-panel{border:1px solid #dbe3f4}.mega-controls{display:flex;gap:14px;align-items:end;flex-wrap:wrap;margin-top:18px}.mega-controls label{display:flex;flex-direction:column;gap:7px;font-size:13px;font-weight:800;color:#4b5670}.mega-controls select,.mega-controls input{height:46px;border:1px solid #d8deea;border-radius:12px;background:#fff;padding:0 13px;font:inherit;color:#18213a}.mega-controls input{width:170px}.mega-spec{margin-top:14px;padding:12px 14px;border-radius:12px;background:#f3f6ff;color:#4d5871;font-size:13px}
+</style></head><body>
+<div class="app"><aside class="sidebar"><div class="brand"><strong>SELECTICORE</strong><span>Selective High School Preparation</span></div><nav class="nav">
+<a href="dashboard.html"><span class="ico">🏠</span>Dashboard</a><a href="learn.html"><span class="ico">📚</span>Learn</a><a href="strategies.html"><span class="ico">🧠</span>Core Strategies</a><a class="active" href="test-centre.html"><span class="ico">🧪</span>Test Centre</a><a href="error-book.html"><span class="ico">📕</span>Error Book</a><a href="writing-lab.html"><span class="ico">✍️</span>Writing Lab</a><a href="typing-lab.html">⌨️ Typing Lab</a><a href="vocabulary.html"><span class="ico">🔤</span>Vocabulary</a><a href="games.html"><span class="ico">🎮</span>Games</a><a href="performance.html"><span class="ico">📊</span>Performance</a><a href="readiness.html"><span class="ico">🎯</span>Readiness</a>
+<a href="account.html"><span class="ico">👤</span>Account</a></nav></aside>
+<main class="main"><div class="top"><input class="search" placeholder="Search fractions, inference, syllogisms, writing, strategies..." aria-label="Search SelectiCore"><div class="avatar">SC</div></div>
+<section class="hero"><div class="eyebrow">SELECTICORE TEST CENTRE</div><h1>Practise with purpose.</h1><p>Choose a subject, set your difficulty and work through original, high-challenge Selective-style questions. The 16,000-test library is designed around harder multi-step reasoning, close distractors, inference and controlled time pressure: 4,000 each for Reading, Mathematical Reasoning, Thinking Skills and Writing, plus 4,000 complete four-section NSW-style mock combinations. Your results and mistakes can feed back into your learning pathway. NSW timed sections use the current official section times.</p><div class="actions"><a class="btn light" href="dashboard.html">Back to Dashboard</a></div></section>
+<section class="panel mt"><h2>Choose your test</h2><p class="sub">Build accuracy first, then increase your speed and difficulty. <b>Advanced</b>, <b>Challenge</b> and <b>Extreme Challenge</b> are available for harder preparation.</p><div class="test-grid">
+<div class="test-card" onclick="choose('math',this)"><div class="icon">🧮</div><h3>Mathematical Reasoning</h3><p>Number, fractions, percentages, patterns, geometry and problem solving.</p></div>
+<div class="test-card" onclick="choose('thinking',this)"><div class="icon">🧠</div><h3>Thinking Skills</h3><p>Logic, syllogisms, analogies, patterns, deduction and constraints.</p></div>
+<div class="test-card" onclick="choose('reading',this)"><div class="icon">📖</div><h3>Reading</h3><p>Inference, vocabulary, evidence, purpose, tone and text analysis.</p></div><div class="test-card" onclick="choose('writing',this)"><div class="icon">✍️</div><h3>Writing</h3><p>Original prompts with planning, structure and Selective-style writing practice.</p></div>
+<div class="test-card" onclick="choose('mixed',this)"><div class="icon">🎯</div><h3>Mixed Practice</h3><p>A combination of original questions across the available practice bank.</p></div>
+</div><div class="controls"><select id="difficulty" class="select"><option>All difficulties</option><option>Selective</option><option>Advanced</option><option>Challenge</option><option>Extreme Challenge</option></select><select id="count" class="select"><option value="10">10 questions</option><option value="20">20 questions</option><option value="35">35 questions</option><option value="50">50 questions</option><option value="100">100 questions</option><option value="all">All available questions</option></select><button class="btn" onclick="startSelected()">Start Practice</button><button class="btn light" onclick="startAdaptive()">🧭 Adaptive Practice</button><button class="btn light" onclick="startNSW(selected)">NSW Timed Section</button><button class="btn dark" onclick="startFullMock()">🎯 Full NSW Mock</button></div></section>
+<section class="panel mt mega-panel"><div class="section-head"><div><h2>16,000 NSW Test Library</h2><p class="sub">4,000 Reading + 4,000 Mathematical Reasoning + 4,000 Thinking Skills + 4,000 Writing tests. Each test is original SelectiCore high-challenge practice content. The difficulty is intentionally pushed beyond ordinary school questions while staying within NSW curriculum concepts.</p></div><span class="kpi">16,000</span></div>
+<div class="mega-controls"><label>Subject<select id="megaSubject"><option value="reading">Reading</option><option value="math">Mathematical Reasoning</option><option value="thinking">Thinking Skills</option><option value="writing">Writing</option></select></label><label>Test number (1–4,000)<input id="megaNumber" type="number" min="1" max="4000" value="1"></label><button class="btn dark" onclick="startMegaTest()">Start selected test</button><button class="btn" onclick="startMegaMock()">🎯 Full NSW Mock #<span id="megaMockNum">1</span></button></div>
+<div class="mega-spec"><b>NSW structure:</b> Reading 17 questions / 38 answers / 45 min • Maths 35 / 40 min • Thinking 40 / 40 min • Writing 1 task / 30 min</div></section><section class="panel mt"><div class="section-head"><div><h2>Complete Test Library</h2><p class="sub">Every question currently in the SelectiCore bank is available from Test Centre.</p></div></div><div class="test-grid" id="libraryGrid"></div></section>
+<section id="quizArea" class="quiz-card mt"><div class="empty"><h2>Ready when you are</h2><p class="sub">Choose a subject above, then press <b>Start Test</b>.</p></div></section><section id="resultsArea" class="panel mt" style="display:none"></section>
+<div class="footer">SelectiCore • Learn. Practise. Master. • Free practice platform</div></main></div>
+<script src="system/question-bank.js"></script><script src="system/mega-test-bank.js"></script><script src="system/nsw-reading-bank.js"></script><script src="system/selecticore-core.js"></script><script>
+const bank=Array.isArray(window.SELECTICORE_BANK)?window.SELECTICORE_BANK:[];
+const subjects={math:{name:'Mathematical Reasoning',icon:'🧮'},thinking:{name:'Thinking Skills',icon:'🧠'},reading:{name:'Reading',icon:'📖'},writing:{name:'Writing',icon:'✍️'}};
+const NSW_LIMITS={reading:45*60,math:40*60,thinking:40*60,writing:30*60};
+const NSW_COUNTS={reading:17,math:35,thinking:40,writing:1};
+let selected='mixed',currentQs=[],index=0,score=0,testStart=0,questionStart=0,timerId=null,remaining=0,answerLocked=false,finished=false,state=SelectiCore.read(),firstAnswered=new Set(),mode='practice'; let mockSections=[],mockIndex=0,mockResults=[];
+function esc(x){return String(x??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
+function choose(x,el){selected=x;document.querySelectorAll('.test-card').forEach(c=>c.classList.remove('selected'));if(el)el.classList.add('selected');}
+function megaNormalise(test){
+  if(!test)return null;
+  if(test.subject==='reading'){
+    return test.questions.map((g,gi)=>({...g,subject:'reading',question_type:'reading_group',parts:g.parts.map((p,pi)=>({...p,id:`${g.id}-P${pi+1}`,subject:'reading',time_seconds:70}))}));
+  }
+  if(test.subject==='writing'){
+    return test.questions.map(q=>({...q,id:q.id,subject:'writing',question:q.question,question_type:'open_response',time_seconds:1800,display_time_seconds:1800}));
+  }
+  return test.questions.map((q,i)=>({...q,id:`${test.id}-Q${i+1}`,subject:test.subject}));
+}
+function startMegaTest(){
+  const subject=document.getElementById('megaSubject').value;
+  const n=Math.max(1,Math.min(4000,Number(document.getElementById('megaNumber').value)||1));
+  const test=window.SELECTICORE_MEGA.get(subject,n);
+  currentQs=megaNormalise(test); selected=subject; mode='mega'; score=0; finished=false; firstAnswered=new Set(); beginTest(test.minutes*60);
+}
+function startMegaMock(){
+  const n=Math.max(1,Math.min(4000,Number(document.getElementById('megaNumber').value)||1));
+  const mock=window.SELECTICORE_MEGA.fullMock(n);
+  clearInterval(timerId);mockSections=mock.sections;mockIndex=0;mockResults=[];mode='mega-full-mock';selected='mixed';startMegaMockSection();
+}
+function startMegaMockSection(){
+  const test=mockSections[mockIndex]; currentQs=megaNormalise(test); selected=test.subject; score=0; finished=false; beginTest(test.minutes*60);
+}
+function renderLibrary(){
+  const grid=document.getElementById('libraryGrid');if(!grid)return;
+  const groups=[['math','Mathematical Reasoning','🧮'],['thinking','Thinking Skills','🧠'],['reading','Reading','📖'],['writing','Writing','✍️']];
+  grid.innerHTML=groups.map(([key,name,icon])=>{return `<div class="test-card"><div class="icon">${icon}</div><h3>${name}</h3><p><b>4,000</b> numbered generated tests available.</p><div class="controls"><button class="btn" onclick="document.getElementById('megaSubject').value='${key}';document.getElementById('megaNumber').value='1';window.scrollTo({top:0,behavior:'smooth'})">Open 4,000-test library</button><button class="btn light" onclick="chooseAndStart('${key}','${key==='writing'?1:35}')">Quick set</button></div></div>`}).join('');
+}
+function chooseAndStart(type,count){selected=type;document.querySelectorAll('.test-card').forEach(c=>c.classList.remove('selected'));document.getElementById('count').value=String(count);startTest(type);}
+function showMessage(title,text){document.getElementById('quizArea').innerHTML=`<div class="empty"><h2>${esc(title)}</h2><p>${esc(text)}</p></div>`;}
+function buildNSWReading(){return (window.SELECTICORE_NSW_READING||[]).map((q,i)=>({...q,id:q.id+'-'+Date.now()+'-'+i}));}
+function startFullMock(){
+  clearInterval(timerId);mockSections=['reading','math','thinking','writing'];mockIndex=0;mockResults=[];mode='full-mock';selected='mixed';startMockSection();
+}
+function startMockSection(){
+  const type=mockSections[mockIndex];const diff='All difficulties';
+  if(type==='reading'){currentQs=buildNSWReading();}
+  else {let pool=bank.filter(q=>q.subject===type&&(diff==='All difficulties'||q.difficulty===diff));const n=NSW_COUNTS[type];if(pool.length<n){showMessage('Mock unavailable','There are not enough questions for the '+subjects[type].name+' section.');return;}currentQs=pool.slice().sort(()=>Math.random()-.5).slice(0,n);}
+  selected=type;beginTest(NSW_LIMITS[type]);
+}
+function finishMockSection(auto){
+  const type=mockSections[mockIndex];const marked=currentQs.reduce((n,x)=>n+(x.question_type==='multiple_choice'?1:x.question_type==='reading_group'?x.parts.length:0),0);
+  const pct=marked?Math.round(score/marked*100):null;mockResults.push({subject:type,score:pct,correct:score,total:marked,writing:type==='writing'});
+  SelectiCore.finishTest(state,{id:'M-'+Date.now()+'-'+type,subject:type,score:pct,correct:score,total:marked,elapsed_seconds:Math.round((Date.now()-testStart)/1000),date:new Date().toISOString(),difficulty:'All difficulties',questions:currentQs.length,mode:'full-mock-section',auto_finished:!!auto});
+  state=SelectiCore.read();mockIndex++;
+  if(mockIndex<mockSections.length){
+    document.getElementById('quizArea').innerHTML='<div class="empty"><div class="kpi">Section complete</div><h2>Next: '+subjects[mockSections[mockIndex]].name+'</h2><p>The full NSW-style mock continues through all four sections.</p><button class="btn" onclick="startMockSection()">Start next section</button></div>';
+  }else finishFullMock();
+}
+function finishFullMock(){finished=true;clearInterval(timerId);const rows=mockResults.map(r=>'<div class="feedback-item"><b>'+subjects[r.subject].name+'</b><p>'+(r.writing?'Response submitted for writing review.':r.correct+' / '+r.total+' correct ('+r.score+'%)')+'</p></div>').join('');document.getElementById('quizArea').innerHTML='<div class="empty"><div class="kpi">Mock complete</div><h2>Full NSW-style practice test finished</h2><p>You completed Reading, Mathematical Reasoning, Thinking Skills and Writing in sequence.</p><div class="feedback-grid" style="margin-top:18px">'+rows+'</div><p class="muted" style="margin-top:18px">Writing is intentionally shown as submitted rather than given an official percentage. SelectiCore can provide automated practice feedback, but NSW writing is marked by trained examiners.</p><a class="btn" href="performance.html">View Performance</a> <a class="btn secondary" href="writing-lab.html">Review Writing</a></div>';}
+function startNSW(type){
+  if(!NSW_COUNTS[type]){showMessage('Choose one subject','Select Reading, Mathematical Reasoning, Thinking Skills or Writing for an NSW-format timed section.');return;}
+  const diff=document.getElementById('difficulty').value;
+  if(type==='reading'){
+    currentQs=buildNSWReading();
+    if(currentQs.length!==17 || currentQs.reduce((n,q)=>n+q.parts.length,0)!==38){showMessage('Reading section unavailable','The NSW Reading section requires 17 questions and 38 answers.');return;}
+    selected=type;mode='nsw';beginTest(NSW_LIMITS[type]);return;
+  }
+  const pool=bank.filter(q=>q.subject===type&&(diff==='All difficulties'||q.difficulty===diff));
+  if(pool.length<NSW_COUNTS[type]){showMessage('Not enough questions','The question bank does not contain enough questions for this NSW section.');return;}
+  currentQs=pool.slice().sort(()=>Math.random()-.5).slice(0,NSW_COUNTS[type]);selected=type;mode='nsw';beginTest(NSW_LIMITS[type]);
+}
+function startPendingRetry(){
+  try{
+    const ids=JSON.parse(localStorage.getItem('selecticore-retry-ids')||'[]');localStorage.removeItem('selecticore-retry-ids');
+    if(!Array.isArray(ids)||!ids.length)return false;
+    const nswReading=(window.SELECTICORE_NSW_READING||[]).flatMap(g=>g.parts||[]);const qs=ids.map(id=>bank.find(q=>q.id===id)||nswReading.find(q=>q.id===id)).filter(Boolean);
+    if(!qs.length)return false;currentQs=qs;selected=qs[0].subject;mode='retry';document.getElementById('difficulty').value='All difficulties';beginTest(qs.reduce((a,q)=>a+(Number(q.time_seconds)||60),0));return true;
+  }catch(e){return false;}
+}
+function startAdaptive(){
+  clearInterval(timerId); state=SelectiCore.read(); mode='adaptive'; selected='mixed';
+  const plan=SelectiCore.adaptivePlan(state), targets=[];
+  (plan.errors||[]).forEach(e=>{const hits=bank.filter(q=>q.id===e.id|| (q.subject===e.subject&&q.topic===e.topic)); hits.slice(0,3).forEach(q=>targets.push(q));});
+  (plan.weakTopics||[]).forEach(t=>bank.filter(q=>q.subject===t.subject&&q.topic===t.topic).slice(0,5).forEach(q=>targets.push(q)));
+  (plan.slowTopics||[]).forEach(t=>bank.filter(q=>q.subject===t.subject&&q.topic===t.topic).slice(0,3).forEach(q=>targets.push(q)));
+  let pool=[...new Map(targets.map(q=>[q.id,q])).values()];
+  if(pool.length<10) pool=[...bank].sort(()=>Math.random()-.5).slice(0,20); else pool=pool.slice(0,20);
+  currentQs=pool; score=0; index=0; finished=false; firstAnswered=new Set();
+  document.getElementById('quizArea').scrollIntoView({behavior:'smooth'}); beginTest(currentQs.reduce((a,q)=>a+(Number(q.display_time_seconds||q.time_seconds)||60),0));
+}
+function startSelected(){startTest(selected)}
+function startTest(type){
+  if(!bank.length){showMessage('Question bank not loaded','The question bank is missing. Re-extract the complete SelectiCore folder so the system folder stays beside the pages.');return;}
+  const diff=document.getElementById('difficulty').value,countValue=document.getElementById('count').value||'10';
+  let pool=bank.filter(q=>(type==='mixed'||q.subject===type)&&(diff==='All difficulties'||q.difficulty===diff));
+  if(!pool.length)pool=bank.filter(q=>type==='mixed'||q.subject===type);
+  if(!pool.length){showMessage('No questions found','Try another subject or difficulty.');return;}
+  const count=countValue==='all'?pool.length:Math.min(Number(countValue),pool.length);currentQs=pool.slice().sort(()=>Math.random()-.5).slice(0,count);selected=type;mode='practice';beginTest((type==='writing'&&currentQs.length===1)?NSW_LIMITS.writing:currentQs.reduce((a,q)=>a+(Number(q.display_time_seconds||q.time_seconds)||60),0));
+}
+function beginTest(limit){
+  index=0;score=0;finished=false;answerLocked=false;firstAnswered=new Set();testStart=Date.now();questionStart=Date.now();remaining=limit;clearInterval(timerId);timerId=setInterval(()=>{remaining--;renderTimer();if(remaining<=0)finishTest(true)},1000);renderQuestion();
+}
+function renderTimer(){const t=document.getElementById('timer');if(!t)return;const m=Math.floor(Math.max(0,remaining)/60),s=Math.max(0,remaining)%60;t.textContent=`Time remaining: ${m}:${String(s).padStart(2,'0')}`;t.classList.toggle('timer-warn',remaining<=60);}
+function renderQuestion(){
+  answerLocked=false;questionStart=Date.now();const q=currentQs[index];if(!q){finishTest(false);return;}
+  const isWriting=q.question_type==='open_response',isReadingGroup=q.question_type==='reading_group',pct=Math.round(index/currentQs.length*100);
+  if(isReadingGroup){
+    const passage=q.passage?`<div class=\"reading-passage\"><div class=\"passage-label\">${esc(q.genre||'Reading text')}</div><div class=\"passage-text\">${esc(q.passage)}</div></div>`:'';
+    const parts=q.parts.map((p,k)=>`<div class="reading-part"><div class="part-label">${k+1}. ${esc(p.question)}</div>${(p.options||[]).map((o,j)=>`<button class="option reading-option" data-part="${k}" data-j="${j}">${esc(o)}</button>`).join('')}</div>`).join('');
+    document.getElementById('quizArea').innerHTML=`<div class="quiz-head"><span>📖 Reading • NSW-format question ${index+1} of 17</span><span id="timer">Time remaining: --:--</span></div><div class="bar"><i style="width:${pct}%"></i></div><div class="question-number">Question ${index+1} of 17 • ${q.parts.length>1?q.parts.length+' answers in this question':'1 answer'} • NSW Reading section</div><div class="reading-instructions"><b>Read the text/question carefully.</b> Select one answer for each part.</div>${passage}${parts}<button class="btn" id="submitReadingGroup" onclick="submitReadingGroup()">Submit answers</button><div id="why"></div>`;
+    document.querySelectorAll('#quizArea .reading-option').forEach(b=>b.addEventListener('click',()=>{const part=Number(b.dataset.part);document.querySelectorAll(`.reading-option[data-part="${part}"]`).forEach(x=>x.classList.remove('selected'));b.classList.add('selected');}));
+    renderTimer();return;
+  }
+  const options=isWriting?'':(q.options||[]).map((o,j)=>`<button class="option" data-j="${j}">${esc(o)}</button>`).join('');
+  const writing=isWriting?`<div class="writing-box"><textarea id="writingAnswer" placeholder="Plan briefly, then write your response here..."></textarea><div class="writing-meta"><span id="wordCount">0 words</span><button class="btn" onclick="submitWriting(false)">Submit response</button></div></div>`:'';
+  document.getElementById('quizArea').innerHTML=`<div class="quiz-head"><span>${subjects[q.subject]?.icon||'🎯'} ${subjects[q.subject]?.name||'Practice'} • ${esc(q.topic)}${mode==='full-mock'?' • Full NSW Mock':''}</span><span id="timer">Time remaining: --:--</span></div><div class="bar"><i style="width:${pct}%"></i></div><div class="question-number">Question ${index+1} of ${currentQs.length} • ${esc(q.difficulty||'Practice')} ${mode==='nsw'?`• NSW ${subjects[q.subject]?.name||''} section`:mode==='retry'?'• Error Book retry':''}</div><div class="question">${esc(q.question)}</div>${options}${writing}<div id="why"></div>`;
+  if(isWriting){const ta=document.getElementById('writingAnswer');ta.addEventListener('input',()=>{document.getElementById('wordCount').textContent=ta.value.trim()?ta.value.trim().split(/\s+/).length+' words':'0 words'});}
+  else document.querySelectorAll('#quizArea .option').forEach(b=>b.addEventListener('click',()=>pick(Number(b.dataset.j))));
+  renderTimer();
+}
+function submitReadingGroup(){
+  if(answerLocked||finished)return;
+  const group=currentQs[index],elapsed=Math.max(1,Math.round((Date.now()-questionStart)/1000));
+  const answers=group.parts.map((p,k)=>{const b=document.querySelector(`.reading-option[data-part="${k}"].selected`);return b?Number(b.dataset.j):null;});
+  if(answers.some(a=>a===null)){document.getElementById('why').innerHTML='<div class="feedback"><b>Please answer every part before continuing.</b></div>';return;}
+  answerLocked=true;let correctCount=0;const feedback=group.parts.map((p,k)=>{const chosen=answers[k],correct=chosen===p.answer;if(correct)correctCount++;state=SelectiCore.recordQuestion(state,p,correct,chosen,Math.max(1,Math.round(elapsed/group.parts.length)));return `<div class="feedback-item"><b>Part ${k+1}: ${correct?'Correct':'Review'}</b><p>Your answer: ${esc(p.options[chosen])} • Correct: ${esc(p.options[p.answer])}</p><p>${esc(p.explanation||'Review the evidence in the text and eliminate unsupported choices.')}</p></div>`;}).join('');
+  score+=correctCount;document.querySelectorAll('#quizArea .reading-option').forEach(b=>b.disabled=true);document.getElementById('submitReadingGroup').disabled=true;document.getElementById('why').innerHTML=`<div class="feedback"><div class="feedback-title">Expert reading check</div><p><b>${correctCount}/${group.parts.length} answers correct.</b> Use the evidence in the text, not a guess based on wording alone.</p><div class="feedback-grid">${feedback}</div><div class="feedback-next"><b>Next:</b> continue when you have reviewed each explanation.</div><div class="feedback-actions"><button class="btn light" onclick="advance()">Continue</button></div></div>`;
+}
+function speedLabel(elapsed,limit){if(!limit)return 'No timing benchmark available.';if(elapsed<=limit*.75)return 'Fast and controlled — comfortably inside the target.';if(elapsed<=limit)return 'On target — within the question benchmark.';if(elapsed<=limit*1.35)return 'A little slow — reduce hesitation while protecting accuracy.';return 'Too slow for this benchmark — practise the strategy until it becomes automatic.';}
+function expertFeedback(q,correct,chosen,elapsed){
+  const chosenText=q.options?.[chosen]||'No answer',correctText=q.options?.[q.answer]||'Correct answer',pace=speedLabel(elapsed,Number(q.time_seconds)||0);
+  const next=correct?(elapsed>(Number(q.time_seconds)||60)*.9?'Repeat this skill under tighter timing, then try a harder question.':'Keep the method, then try a harder question using the same skill.'):'Revisit the strategy, redo the question without the answer, then retry a similar question.';
+  return `<div class="feedback"><div class="feedback-head"><div class="feedback-title">${correct?'Expert check: correct':'Expert check: review needed'}</div><span class="feedback-badge ${correct?'':'warn'}">${correct?'Skill demonstrated':'Learning opportunity'}</span></div><div class="feedback-grid"><div class="feedback-item"><b>Your answer</b><p>${esc(chosenText)}</p></div><div class="feedback-item"><b>Correct answer</b><p>${esc(correctText)}</p></div><div class="feedback-item"><b>Why</b><p>${esc(q.explanation||'Use the strategy shown in the lesson for this skill.')}</p></div><div class="feedback-item"><b>Strategy</b><p>${esc(q.skill||'Identify the skill being tested, then work step by step.')}</p></div><div class="feedback-item"><b>Timing</b><p>${elapsed}s used. ${pace}</p></div><div class="feedback-item"><b>Difficulty</b><p>${esc(q.difficulty||'Practice')} • ${esc(q.topic||'General skill')}</p></div></div><div class="feedback-next"><b>What an expert would do next:</b> ${next}</div>${!correct?`<div class="feedback-actions"><button class="btn light" onclick="setReason('${esc(q.id)}','Didn’t understand')">Didn’t understand</button><button class="btn light" onclick="setReason('${esc(q.id)}','Didn’t know strategy')">Didn’t know strategy</button><button class="btn light" onclick="setReason('${esc(q.id)}','Careless mistake')">Careless mistake</button><button class="btn light" onclick="setReason('${esc(q.id)}','Misread question')">Misread</button><button class="btn light" onclick="setReason('${esc(q.id)}','Too slow')">Too slow</button></div>`:''}<div class="feedback-actions"><button class="btn secondary" onclick="retryCurrent()">Retry this question</button><button class="btn light" onclick="advance()">Continue</button></div></div>`;
+}
+function pick(j){
+  if(answerLocked||finished)return;answerLocked=true;const x=currentQs[index],elapsed=Math.max(1,Math.round((Date.now()-questionStart)/1000)),correct=j===x.answer;
+  const first=!firstAnswered.has(x.id);if(first){firstAnswered.add(x.id);if(correct)score++;}
+  state=SelectiCore.recordQuestion(state,x,correct,j,elapsed);
+  if(correct && mode==='retry') state=SelectiCore.resolveError(state,x.id);
+  document.querySelectorAll('#quizArea .option').forEach((b,n)=>{b.disabled=true;if(n===x.answer)b.classList.add('correct');if(n===j&&!correct)b.classList.add('wrong')});
+  document.getElementById('why').innerHTML=expertFeedback(x,correct,j,elapsed);
+}
+function setReason(id,reason){state=SelectiCore.setErrorReason(state,id,reason);const n=document.getElementById('reasonSaved');if(n)n.textContent='Saved: '+reason;}
+function retryCurrent(){if(finished)return;answerLocked=false;questionStart=Date.now();document.getElementById('why').innerHTML='';document.querySelectorAll('#quizArea .option').forEach(b=>{b.disabled=false;b.classList.remove('correct','wrong')});}
+function writingAnalysis(text){const clean=text.trim(),words=clean?clean.split(/\s+/).length:0,sentences=clean?clean.split(/[.!?]+/).filter(x=>x.trim()).length:0,paragraphs=clean?clean.split(/\n\s*\n/).filter(x=>x.trim()).length:0,hasSensory=/\b(heard|hear|sound|smell|scent|taste|tasted|touch|felt|feel|bright|dark|rough|cold|warm|loud|silent|whisper|glow|shadow)\b/i.test(clean),hasDialogue=/[“”"'].*[“”"']/.test(clean)||/\b(said|asked|shouted|whispered|replied)\b/i.test(clean),hasTurn=/\b(but|however|suddenly|until|then|although|realised|realized|instead)\b/i.test(clean),avg=sentences?Math.round(words/sentences):0;const scores={'Prompt relevance':clean?3:0,'Original idea':clean?3:0,'Clear structure':Math.min(5,Math.max(1,paragraphs+(hasTurn?2:0))),'Specific details':Math.min(5,(hasSensory?3:1)+(words>180?1:0)),'Sentence variety':Math.min(5,(avg>=8?3:2)+(sentences>=6?1:0)+(hasDialogue?1:0)),'Technical control':Math.min(5,words?3:0)};const total=Object.values(scores).reduce((a,b)=>a+b,0);return{pct:Math.round(total/(Object.keys(scores).length*5)*100),scores,words,sentences,paragraphs,hasSensory,hasDialogue,hasTurn,avg};}
+function writingFeedback(q,text,elapsed){const a=writingAnalysis(text),rows=Object.entries(a.scores).map(([k,v])=>`<div class="rubric-row"><span>${esc(k)}</span><div class="rubric-bar"><i style="width:${v*20}%"></i></div><small>${v}/5</small></div>`).join('');return `<div class="feedback"><div class="feedback-head"><div class="feedback-title">Expert-style writing review</div><span class="feedback-badge ${a.pct<70?'warn':''}">${a.pct}% practice profile</span></div><div class="feedback-item"><b>Rubric snapshot</b><div style="margin-top:8px">${rows}</div></div><div class="feedback-grid" style="margin-top:12px"><div class="feedback-item"><b>What is working</b><p>${a.words?`You produced ${a.words} words in ${elapsed}s. `:'Start by getting your ideas onto the page. '}${a.hasSensory?'You included sensory detail.':'Add at least one precise sensory detail.'}</p></div><div class="feedback-item"><b>Structure check</b><p>${a.paragraphs>=3?'Your paragraphing gives the story visible shape.':'Use separate paragraphs for the opening, build-up, problem, climax and ending.'} ${a.hasTurn?'There is a clear turning-point signal.':'Make the turning point unmistakable.'}</p></div><div class="feedback-item"><b>Language check</b><p>${a.avg>=8?'You have enough sentence length variation to build rhythm.':'Mix short punchy sentences with longer descriptive ones.'} ${a.hasDialogue?'Dialogue is present.':'Use dialogue only when it adds tension or reveals character.'}</p></div><div class="feedback-item"><b>Editing check</b><p>Use the final 3–5 minutes to check spelling, punctuation, tense consistency and missing words.</p></div></div><div class="feedback-next"><b>Next expert step:</b> rewrite one paragraph while improving the weakest rubric area. This is automated practice feedback, not an official NSW examiner mark.</div><div class="feedback-actions"><button class="btn secondary" onclick="document.getElementById('writingAnswer').focus()">Improve response</button><button class="btn light" onclick="advance()">Continue</button></div></div>`;}
+
+function submitWriting(auto){
+  if(answerLocked||finished)return;answerLocked=true;const x=currentQs[index],ta=document.getElementById('writingAnswer'),elapsed=Math.max(1,Math.round((Date.now()-questionStart)/1000)),text=ta?ta.value:'';const words=text.trim()?text.trim().split(/\s+/).length:0;
+  const analysis=writingAnalysis(text); state=SelectiCore.recordWriting(state,{id:x.id,prompt:x.question,response:text,words,time_seconds:elapsed,practice_pct:analysis.pct,rubric:analysis.scores,self_review:'Automated practice feedback generated'});
+  if(!auto)document.getElementById('why').innerHTML=writingFeedback(x,text,elapsed);
+}
+function advance(){if(finished)return;index++;if(index>=currentQs.length)finishTest(false);else renderQuestion();}
+function finishMegaMockSection(auto){
+  if(finished)return;
+  if(auto&&currentQs[index]?.question_type==='open_response'&&!answerLocked){submitWriting(true);return;}
+  finished=true;clearInterval(timerId);
+  const type=mockSections[mockIndex];
+  const marked=currentQs.reduce((n,x)=>n+(x.question_type==='multiple_choice'?1:x.question_type==='reading_group'?x.parts.length:0),0);
+  const pct=marked?Math.round(score/marked*100):null;
+  state=SelectiCore.finishTest(state,{id:'MEGA-'+Date.now()+'-'+type.subject,subject:type.subject,score:pct,correct:score,total:marked,elapsed_seconds:Math.round((Date.now()-testStart)/1000),date:new Date().toISOString(),difficulty:'All difficulties',questions:currentQs.length,mode:'mega-full-mock',auto_finished:!!auto});
+  mockResults.push({subject:type.subject,score:pct,correct:score,total:marked});
+  mockIndex++;
+  if(mockIndex<mockSections.length){document.getElementById('quizArea').innerHTML=`<div class="empty"><div class="kpi">Section complete</div><h2>Next: ${subjects[mockSections[mockIndex].subject].name}</h2><p>The NSW-style mock continues. Your progress is saved.</p><button class="btn" onclick="startMegaMockSection()">Start next section</button></div>`;}
+  else {
+    const rows=mockResults.map(r=>`<div class="feedback-item"><b>${subjects[r.subject].name}</b><p>${r.subject==='writing'?'Response submitted for writing review.':`${r.correct} / ${r.total} correct (${r.score}%)`}</p></div>`).join('');
+    document.getElementById('quizArea').innerHTML=`<div class="empty"><div class="kpi">Mock complete</div><h2>NSW-format Test #${String(mockSections[0].id.split('-').pop()).padStart(4,'0')} complete</h2><p>You completed all four sections.</p><div class="feedback-grid" style="margin-top:18px">${rows}</div><p class="muted">Writing is saved for SelectiCore practice feedback; this is not an official NSW examiner mark.</p><a class="btn" href="performance.html">View Performance</a></div>`;
+  }
+}
+
+function finishTest(auto){
+  if(mode==='full-mock'){if(finished)return;finished=false;finishMockSection(auto);return;} if(mode==='mega-full-mock'){finishMegaMockSection(auto);return;}
+  if(finished)return;
+  if(auto&&currentQs[index]?.question_type==='open_response'&&!answerLocked){submitWriting(true)}
+  finished=true;clearInterval(timerId);
+  const marked=currentQs.reduce((n,x)=>n+(x.question_type==='multiple_choice'?1:x.question_type==='reading_group'?x.parts.length:0),0),pct=marked?Math.round(score/marked*100):null,writingCount=currentQs.filter(x=>x.question_type==='open_response').length;
+  state=SelectiCore.finishTest(state,{id:'T-'+Date.now(),subject:selected,score:pct,correct:score,total:marked,elapsed_seconds:Math.round((Date.now()-testStart)/1000),date:new Date().toISOString(),difficulty:document.getElementById('difficulty').value,questions:currentQs.length,mode,auto_finished:!!auto});
+  document.getElementById('quizArea').innerHTML=`<div class="empty"><div class="kpi">${marked?pct+'%':'Writing complete'}</div><h2>${auto?'Time is up.':'Test complete.'}</h2><p>${marked?`${score} correct out of ${marked} on first attempts.`:`${writingCount} writing response${writingCount===1?'':'s'} saved for review.`}</p><p class="muted">Your topic data, mistakes and test history have been saved.</p><a class="btn" href="performance.html">View Performance</a> <a class="btn secondary" href="error-book.html">Review Errors</a></div>`;
+}
+renderLibrary();
+if(!startPendingRetry()){
+  // no-op
+}
+</script>
+</body></html>

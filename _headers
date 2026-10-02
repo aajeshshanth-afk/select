@@ -1,0 +1,9 @@
+/*
+  Production security headers are applied by functions/_middleware.js.
+*/
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  X-Frame-Options: DENY
+*/

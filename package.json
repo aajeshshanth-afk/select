@@ -1,0 +1,8 @@
+{
+  "name": "selecticore-production",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "exit 0"
+  }
+}

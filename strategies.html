@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SelectiCore — Core Strategies</title><style>
+:root{--navy:#0d1738;--navy2:#18264d;--blue:#315bd6;--blue2:#3f65dc;--ink:#18213a;--muted:#737c8e;--line:#e1e5ed;--bg:#f5f7fb;--white:#fff;--shadow:0 8px 24px rgba(17,31,67,.07)}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg)}
+a{color:inherit;text-decoration:none}
+.app{min-height:100vh;display:flex}.sidebar{width:334px;background:var(--navy);color:#fff;position:fixed;left:0;top:0;bottom:0;padding:26px 18px;z-index:10}.brand{padding:0 18px 26px}.brand strong{display:block;font-size:31px;line-height:1;font-weight:900;letter-spacing:-1.4px}.brand span{display:block;color:#aeb8d1;font-size:16px;margin-top:12px;letter-spacing:.1px}.nav{display:flex;flex-direction:column;gap:7px}.nav a{display:flex;align-items:center;gap:13px;padding:14px 17px;border-radius:13px;color:#cbd2e3;font-size:16px;transition:.15s}.nav a:hover{background:#172549;color:#fff}.nav a.active{background:#293a63;color:#fff}.nav .ico{width:22px;text-align:center;font-size:18px}
+.main{margin-left:334px;width:calc(100% - 334px);padding:0 32px 36px}.top{height:86px;display:flex;align-items:center;gap:20px}.search{height:56px;flex:1;background:#fff;border:1px solid #dfe4ed;border-radius:17px;box-shadow:0 2px 8px rgba(20,30,60,.03);padding:0 23px;font-size:15px;color:var(--ink);outline:none}.search::placeholder{color:#a0a6b3}.avatar{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#405ee1,#5549df);color:#fff;font-size:20px;font-weight:800;box-shadow:0 6px 15px rgba(49,91,214,.2)}
+.hero{background:linear-gradient(120deg,#172857 0%,#315bd6 100%);border-radius:23px;padding:43px 40px 39px;color:#fff;box-shadow:0 13px 28px rgba(25,53,120,.12)}.eyebrow{font-size:16px;letter-spacing:1px;color:#cbd5f1;margin-bottom:5px}.hero h1{font-size:39px;line-height:1.1;margin:0 0 21px;letter-spacing:-1.4px}.hero p{font-size:19px;line-height:1.5;color:#dce4f6;max-width:1120px;margin:0 0 22px}.actions{display:flex;gap:13px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:47px;padding:0 20px;border-radius:13px;background:#3863dc;color:#fff;font-weight:800;border:0;cursor:pointer}.btn.light{background:#fff;color:#26324c}.btn:hover{filter:brightness(.98);transform:translateY(-1px)}
+.panel{background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:28px 26px}.mt{margin-top:22px}.panel h2{font-size:29px;letter-spacing:-.7px;margin:0 0 8px}.panel .sub{margin:0;color:var(--muted);font-size:16px}.quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:23px}.quick{min-height:47px;border-radius:13px;background:#3860d5;color:#fff;display:flex;align-items:center;justify-content:center;gap:9px;font-weight:800}.quick:hover{background:#3158cc;transform:translateY(-1px)}
+.path{padding:27px 26px}.path h2{font-size:29px}.path p{font-size:17px;margin:0;color:var(--muted)}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:0}.metric{min-height:156px;display:flex;flex-direction:column;justify-content:center}.label{font-size:14px;color:#7a8291;text-transform:uppercase;letter-spacing:.8px}.value{font-size:40px;font-weight:900;line-height:1.05;margin-top:8px;letter-spacing:-1px}.focus{font-size:25px;line-height:1.1}.progress{height:10px;background:#e8ebf3;border-radius:99px;overflow:hidden;margin-top:18px;width:220px;max-width:100%}.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,#3761da,#6951e6);border-radius:99px}.section-head{display:flex;align-items:center;justify-content:space-between;gap:20px}.footer{padding:30px 4px 0;text-align:center;color:#8a91a0;font-size:13px}
+@media(max-width:1050px){.sidebar{width:250px}.main{margin-left:250px;width:calc(100% - 250px)}.quick-grid,.metrics{grid-template-columns:repeat(2,1fr)}}@media(max-width:720px){.sidebar{position:static;width:100%;height:auto;padding:18px}.app{display:block}.brand{padding-bottom:15px}.nav{display:grid;grid-template-columns:repeat(2,1fr)}.main{margin:0;width:100%;padding:0 15px 28px}.top{height:auto;padding:15px 0}.hero{padding:30px 25px}.hero h1{font-size:32px}.hero p{font-size:16px}.quick-grid,.metrics{grid-template-columns:1fr}.actions{flex-direction:column}.avatar{display:none}}
+
+.test-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:22px}
+.test-card{border:1px solid var(--line);border-radius:18px;padding:22px;background:#fff;cursor:pointer;transition:.15s;box-shadow:var(--shadow)}
+.test-card:hover,.test-card.selected{border-color:#315bd6;box-shadow:0 10px 25px rgba(49,91,214,.12);transform:translateY(-2px)}
+.test-card .icon{font-size:30px;margin-bottom:10px} .test-card h3{margin:0 0 7px;font-size:20px} .test-card p{margin:0;color:var(--muted);line-height:1.5}
+.controls{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:22px} .select{height:46px;padding:0 13px;border:1px solid var(--line);border-radius:12px;background:#fff;font:inherit;color:var(--ink)}
+.quiz-card{background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:28px} .question{font-size:24px;font-weight:800;line-height:1.35} .option{display:block;width:100%;text-align:left;padding:15px 17px;margin-top:11px;border:1px solid var(--line);background:#fff;border-radius:12px;font:inherit;cursor:pointer} .option:hover{border-color:#315bd6;background:#f6f8ff} .option.correct{border-color:#2e9b62;background:#eef9f2} .option.wrong{border-color:#d84b5b;background:#fff0f2} .strategy{margin-top:16px;padding:14px 16px;background:#f5f7fb;border-radius:12px;color:#4f586b;line-height:1.5}
+.empty{text-align:center;padding:42px 20px} .kpi{font-size:58px;font-weight:900;letter-spacing:-2px;color:#315bd6}
+@media(max-width:720px){.test-grid{grid-template-columns:1fr}}
+</style></head><body>
+<div class="app"><aside class="sidebar"><div class="brand"><strong>SELECTICORE</strong><span>Selective High School Preparation</span></div><nav class="nav">
+<a href="dashboard.html"><span class="ico">🏠</span>Dashboard</a><a href="learn.html"><span class="ico">📚</span>Learn</a><a class="active" href="strategies.html"><span class="ico">🧠</span>Core Strategies</a><a href="test-centre.html"><span class="ico">🧪</span>Test Centre</a><a href="error-book.html"><span class="ico">📕</span>Error Book</a><a href="writing-lab.html"><span class="ico">✍️</span>Writing Lab</a><a href="typing-lab.html">⌨️ Typing Lab</a><a href="vocabulary.html"><span class="ico">🔤</span>Vocabulary</a><a href="games.html"><span class="ico">🎮</span>Games</a><a href="performance.html"><span class="ico">📊</span>Performance</a><a href="readiness.html"><span class="ico">🎯</span>Readiness</a>
+<a href="account.html"><span class="ico">👤</span>Account</a></nav></aside>
+<main class="main"><div class="top"><input class="search" placeholder="Search strategies, fractions, inference, syllogisms, writing..." aria-label="Search SelectiCore"><div class="avatar">SC</div></div>
+<section class="hero"><div class="eyebrow">SELECTICORE CORE STRATEGIES</div><h1>Know the strategy. Solve with confidence.</h1><p>Build a repeatable method for the question types that appear across Selective-style practice. Learn how to recognise, solve, check and move on efficiently.</p><div class="actions"><a class="btn light" href="dashboard.html">Back to Dashboard</a><a class="btn" href="test-centre.html">Practise in Test Centre</a></div></section>
+<section class="panel mt"><div class="section-head"><div><h2>Universal solving system</h2><p class="sub">Use this five-step routine on unfamiliar questions.</p></div></div><div class="metrics" style="margin-top:18px">
+<div class="metric panel"><div class="label">01 · Recognise</div><div class="value" style="font-size:25px">What type?</div><p class="sub">Identify the skill before calculating or guessing.</p></div>
+<div class="metric panel"><div class="label">02 · Plan</div><div class="value" style="font-size:25px">Choose</div><p class="sub">Select the simplest strategy that fits the evidence.</p></div>
+<div class="metric panel"><div class="label">03 · Solve</div><div class="value" style="font-size:25px">Work</div><p class="sub">Keep steps organised and avoid unnecessary work.</p></div>
+<div class="metric panel"><div class="label">04 · Check</div><div class="value" style="font-size:25px">Verify</div><p class="sub">Check reasonableness, conditions and alternatives.</p></div>
+</div></section>
+<section class="grid g2 mt">
+<div class="panel"><h2>🧮 Mathematical Reasoning</h2><p class="sub">Turn unfamiliar maths into a sequence of manageable decisions.</p>
+<div class="strategy"><b>Core routine:</b> Read → identify → estimate → choose a method → solve → check.</div>
+<div class="step"><div class="num">1</div><div><b>Working backwards</b><br><span class="sub">Start from the final condition and reverse each operation.</span></div></div>
+<div class="step"><div class="num">2</div><div><b>Elimination</b><br><span class="sub">Remove answers that break a condition before doing full calculations.</span></div></div>
+<div class="step"><div class="num">3</div><div><b>Patterns and relationships</b><br><span class="sub">Compare changes between terms instead of calculating every value.</span></div></div>
+<div class="step"><div class="num">4</div><div><b>Fractions & percentages</b><br><span class="sub">Convert to a form that makes the comparison easiest.</span></div></div>
+<div class="step"><div class="num">5</div><div><b>Ratio & proportion</b><br><span class="sub">Find the unit relationship before scaling up or down.</span></div></div>
+<div class="step"><div class="num">6</div><div><b>Multi-step problems</b><br><span class="sub">Write the target first and separate the problem into smaller links.</span></div></div>
+<div class="step"><div class="num">7</div><div><b>Estimate and check</b><br><span class="sub">Use an approximate answer to catch impossible results.</span></div></div>
+<div class="step"><div class="num">8</div><div><b>Time-saving methods</b><br><span class="sub">Use mental maths, answer choices and structure when they are valid.</span></div></div>
+</div>
+<div class="panel"><h2>🧠 Thinking Skills</h2><p class="sub">Translate every condition exactly. Never add information that was not given.</p>
+<div class="strategy"><b>Core routine:</b> Translate rules → track constraints → eliminate → test the remaining possibilities.</div>
+<div class="step"><div class="num">1</div><div><b>Must vs could be true</b><br><span class="sub">For “must”, test whether every valid case supports the statement.</span></div></div>
+<div class="step"><div class="num">2</div><div><b>If/then reasoning</b><br><span class="sub">Separate a condition from its consequence and avoid reversing it.</span></div></div>
+<div class="step"><div class="num">3</div><div><b>Syllogisms</b><br><span class="sub">Use only the information stated; do not assume the reverse is true.</span></div></div>
+<div class="step"><div class="num">4</div><div><b>Ordering & arrangements</b><br><span class="sub">Place the strongest restrictions first, then fill flexible positions.</span></div></div>
+<div class="step"><div class="num">5</div><div><b>Classification</b><br><span class="sub">Find the shared rule rather than relying on appearance alone.</span></div></div>
+<div class="step"><div class="num">6</div><div><b>Analogies</b><br><span class="sub">State the relationship in words before applying it to the new pair.</span></div></div>
+<div class="step"><div class="num">7</div><div><b>Spatial reasoning</b><br><span class="sub">Track one distinctive feature through rotations or reflections.</span></div></div>
+<div class="step"><div class="num">8</div><div><b>Test possibilities efficiently</b><br><span class="sub">Use the most restrictive condition first to reduce the search.</span></div></div>
+</div>
+<div class="panel"><h2>📖 Reading</h2><p class="sub">Every answer needs to be supported by the passage and the exact wording of the question.</p>
+<div class="strategy"><b>Core routine:</b> Read for purpose → locate evidence → eliminate → choose the most complete answer.</div>
+<div class="step"><div class="num">1</div><div><b>Main idea</b><br><span class="sub">Ask what the whole passage is mainly communicating, not one paragraph.</span></div></div>
+<div class="step"><div class="num">2</div><div><b>Inference</b><br><span class="sub">Combine clues from the text; do not invent facts outside it.</span></div></div>
+<div class="step"><div class="num">3</div><div><b>Vocabulary in context</b><br><span class="sub">Replace the word with each option and test which meaning fits the sentence.</span></div></div>
+<div class="step"><div class="num">4</div><div><b>Author purpose</b><br><span class="sub">Consider what the writer is trying to achieve with the whole text.</span></div></div>
+<div class="step"><div class="num">5</div><div><b>Tone and mood</b><br><span class="sub">Use repeated word choices and details to identify the attitude or atmosphere.</span></div></div>
+<div class="step"><div class="num">6</div><div><b>Best answer</b><br><span class="sub">Reject answers that are partly correct but do not fully answer the question.</span></div></div>
+</div>
+<div class="panel"><h2>✍️ Writing</h2><p class="sub">Use your 30 minutes deliberately: plan, draft, develop, then edit.</p>
+<div class="strategy"><b>Core routine:</b> Decode prompt → plan 3–5 minutes → draft with purpose → edit strategically.</div>
+<div class="step"><div class="num">1</div><div><b>Decode the prompt</b><br><span class="sub">Identify the task, audience, purpose and any required idea or setting.</span></div></div>
+<div class="step"><div class="num">2</div><div><b>Strong opening</b><br><span class="sub">Create immediate interest without wasting the first paragraph on background.</span></div></div>
+<div class="step"><div class="num">3</div><div><b>Character & setting</b><br><span class="sub">Reveal character through choices, actions, dialogue and specific sensory details.</span></div></div>
+<div class="step"><div class="num">4</div><div><b>Escalate the conflict</b><br><span class="sub">Make the problem grow so the climax feels earned.</span></div></div>
+<div class="step"><div class="num">5</div><div><b>Show, don’t tell</b><br><span class="sub">Use actions, reactions and imagery instead of simply naming emotions.</span></div></div>
+<div class="step"><div class="num">6</div><div><b>Precise vocabulary</b><br><span class="sub">Choose exact words; advanced vocabulary only helps when it is natural and accurate.</span></div></div>
+<div class="step"><div class="num">7</div><div><b>Sentence variety</b><br><span class="sub">Mix sentence lengths and structures to control rhythm and emphasis.</span></div></div>
+<div class="step"><div class="num">8</div><div><b>Edit strategically</b><br><span class="sub">Check prompt relevance, sentence control, spelling, punctuation and clarity.</span></div></div>
+</div></section>
+<section class="panel mt"><h2>⚡ Exam-speed strategies</h2><p class="sub">Use speed to protect time for the questions that need deeper thinking.</p><div class="grid g3" style="margin-top:18px">
+<div class="card"><h3>Skip & return</h3><p class="sub">If a question is consuming too much time, mark it mentally and return after easier questions.</p></div>
+<div class="card"><h3>Estimate first</h3><p class="sub">A quick estimate can eliminate impossible options before detailed calculation.</p></div>
+<div class="card"><h3>Check conditions</h3><p class="sub">Before submitting, ask: does my answer satisfy every condition in the question?</p></div>
+</div></section>
+<section class="panel mt"><h2>🔄 The SelectiCore mastery loop</h2><div class="grid g4" style="margin-top:18px">
+<div class="card"><div class="label">01</div><h3>Learn</h3><p class="sub">Understand the strategy.</p></div><div class="card"><div class="label">02</div><h3>Practise</h3><p class="sub">Use it without pressure.</p></div><div class="card"><div class="label">03</div><h3>Time it</h3><p class="sub">Build speed and accuracy.</p></div><div class="card"><div class="label">04</div><h3>Retry</h3><p class="sub">Fix mistakes until mastered.</p></div>
+</div><div class="actions" style="margin-top:20px"><a class="btn" href="test-centre.html">Open Test Centre</a><a class="btn light" href="error-book.html">Review Error Book</a></div></section>
+<div class="footer">SelectiCore • Learn. Practise. Master. • Free practice platform</div></main></div>
+</body></html>

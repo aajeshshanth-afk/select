@@ -1,0 +1,62 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SelectiCore — Error Book</title><style>
+:root{--navy:#0d1738;--navy2:#18264d;--blue:#315bd6;--blue2:#3f65dc;--ink:#18213a;--muted:#737c8e;--line:#e1e5ed;--bg:#f5f7fb;--white:#fff;--shadow:0 8px 24px rgba(17,31,67,.07)}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg)}
+a{color:inherit;text-decoration:none}
+.app{min-height:100vh;display:flex}.sidebar{width:334px;background:var(--navy);color:#fff;position:fixed;left:0;top:0;bottom:0;padding:26px 18px;z-index:10}.brand{padding:0 18px 26px}.brand strong{display:block;font-size:31px;line-height:1;font-weight:900;letter-spacing:-1.4px}.brand span{display:block;color:#aeb8d1;font-size:16px;margin-top:12px;letter-spacing:.1px}.nav{display:flex;flex-direction:column;gap:7px}.nav a{display:flex;align-items:center;gap:13px;padding:14px 17px;border-radius:13px;color:#cbd2e3;font-size:16px;transition:.15s}.nav a:hover{background:#172549;color:#fff}.nav a.active{background:#293a63;color:#fff}.nav .ico{width:22px;text-align:center;font-size:18px}
+.main{margin-left:334px;width:calc(100% - 334px);padding:0 32px 36px}.top{height:86px;display:flex;align-items:center;gap:20px}.search{height:56px;flex:1;background:#fff;border:1px solid #dfe4ed;border-radius:17px;box-shadow:0 2px 8px rgba(20,30,60,.03);padding:0 23px;font-size:15px;color:var(--ink);outline:none}.search::placeholder{color:#a0a6b3}.avatar{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#405ee1,#5549df);color:#fff;font-size:20px;font-weight:800;box-shadow:0 6px 15px rgba(49,91,214,.2)}
+.hero{background:linear-gradient(120deg,#172857 0%,#315bd6 100%);border-radius:23px;padding:43px 40px 39px;color:#fff;box-shadow:0 13px 28px rgba(25,53,120,.12)}.eyebrow{font-size:16px;letter-spacing:1px;color:#cbd5f1;margin-bottom:5px}.hero h1{font-size:39px;line-height:1.1;margin:0 0 21px;letter-spacing:-1.4px}.hero p{font-size:19px;line-height:1.5;color:#dce4f6;max-width:1120px;margin:0 0 22px}.actions{display:flex;gap:13px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:47px;padding:0 20px;border-radius:13px;background:#3863dc;color:#fff;font-weight:800;border:0;cursor:pointer}.btn.light{background:#fff;color:#26324c}.btn:hover{filter:brightness(.98);transform:translateY(-1px)}
+.panel{background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:28px 26px}.mt{margin-top:22px}.panel h2{font-size:29px;letter-spacing:-.7px;margin:0 0 8px}.panel .sub{margin:0;color:var(--muted);font-size:16px}.quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:23px}.quick{min-height:47px;border-radius:13px;background:#3860d5;color:#fff;display:flex;align-items:center;justify-content:center;gap:9px;font-weight:800}.quick:hover{background:#3158cc;transform:translateY(-1px)}
+.path{padding:27px 26px}.path h2{font-size:29px}.path p{font-size:17px;margin:0;color:var(--muted)}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:0}.metric{min-height:156px;display:flex;flex-direction:column;justify-content:center}.label{font-size:14px;color:#7a8291;text-transform:uppercase;letter-spacing:.8px}.value{font-size:40px;font-weight:900;line-height:1.05;margin-top:8px;letter-spacing:-1px}.focus{font-size:25px;line-height:1.1}.progress{height:10px;background:#e8ebf3;border-radius:99px;overflow:hidden;margin-top:18px;width:220px;max-width:100%}.progress i{display:block;height:100%;width:0%;background:linear-gradient(90deg,#3761da,#6951e6);border-radius:99px}.section-head{display:flex;align-items:center;justify-content:space-between;gap:20px}.footer{padding:30px 4px 0;text-align:center;color:#8a91a0;font-size:13px}
+@media(max-width:1050px){.sidebar{width:250px}.main{margin-left:250px;width:calc(100% - 250px)}.quick-grid,.metrics{grid-template-columns:repeat(2,1fr)}}@media(max-width:720px){.sidebar{position:static;width:100%;height:auto;padding:18px}.app{display:block}.brand{padding-bottom:15px}.nav{display:grid;grid-template-columns:repeat(2,1fr)}.main{margin:0;width:100%;padding:0 15px 28px}.top{height:auto;padding:15px 0}.hero{padding:30px 25px}.hero h1{font-size:32px}.hero p{font-size:16px}.quick-grid,.metrics{grid-template-columns:1fr}.actions{flex-direction:column}.avatar{display:none}}
+
+.error-row{display:flex;gap:18px;align-items:flex-start;border:1px solid var(--line);border-radius:17px;padding:19px 20px;background:#fff;margin-top:12px;box-shadow:0 5px 16px rgba(17,31,67,.04)}
+.error-row b{font-size:16px}.error-row p{margin:6px 0;color:var(--muted)}.error-row small{color:#687287;line-height:1.5}.why{margin-top:12px;padding:12px 14px;background:#f7f9fd;border-radius:12px;color:#35415a;line-height:1.5}.pill{display:inline-flex;white-space:nowrap;align-items:center;padding:7px 10px;border-radius:999px;background:#fff2e5;color:#9a5411;font-size:12px;font-weight:800}.error-row:has(.pill){ }
+@media(max-width:720px){.error-row{flex-direction:column}.error-row .pill{align-self:flex-start}}
+</style></head><body>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand"><strong>SELECTICORE</strong><span>Selective High School Preparation</span></div>
+  <nav class="nav">
+    <a href="dashboard.html"><span class="ico">🏠</span>Dashboard</a>
+    <a href="learn.html"><span class="ico">📚</span>Learn</a>
+    <a href="strategies.html"><span class="ico">🧠</span>Core Strategies</a>
+    <a href="test-centre.html"><span class="ico">🧪</span>Test Centre</a>
+    <a class="active" href="error-book.html"><span class="ico">📕</span>Error Book</a>
+    <a href="writing-lab.html"><span class="ico">✍️</span>Writing Lab</a>
+    <a href="typing-lab.html">⌨️ Typing Lab</a><a href="vocabulary.html"><span class="ico">🔤</span>Vocabulary</a>
+    <a href="games.html"><span class="ico">🎮</span>Games</a>
+    <a href="performance.html"><span class="ico">📊</span>Performance</a><a href="readiness.html"><span class="ico">🎯</span>Readiness</a>
+  <a href="account.html"><span class="ico">👤</span>Account</a></nav>
+</aside>
+<main class="main">
+  <div class="top"><input class="search" id="search" placeholder="Search your mistakes, topics, strategies..." aria-label="Search error book"><div class="avatar">SC</div></div>
+  <section class="hero">
+    <div class="eyebrow">PERSONALISED REVISION</div>
+    <h1>Error Book</h1>
+    <p>Turn mistakes into progress. Review what went wrong, practise the exact skill, then retry until you master it.</p>
+    <div class="actions"><a class="btn" href="test-centre.html">Retry mistakes</a><a class="btn light" href="strategies.html">Review strategies</a></div>
+  </section>
+  <section class="metrics mt" id="stats"></section>
+  <section class="panel mt">
+    <div class="section-head"><div><h2>My mistakes</h2><p class="sub">Every saved mistake is an opportunity to improve.</p></div><div class="actions"><button class="btn" onclick="retry()">Retry all</button><button class="btn light" onclick="exportData()">Export progress</button><button class="btn light" onclick="clearAll()">Clear book</button></div></div>
+    <div id="list" style="margin-top:22px"></div>
+  </section>
+  <section class="panel mt"><h2>How to fix a mistake</h2><p class="sub">Mistake → Strategy → Example → Practice → Timed practice → Retry → Mastered</p><div class="quick-grid" style="margin-top:20px"><div class="quick">1. Understand</div><div class="quick">2. Learn strategy</div><div class="quick">3. Practise</div><div class="quick">4. Retry</div></div></section>
+  <div class="footer">SelectiCore • Error Book • Learn. Practise. Master.</div>
+</main></div>
+<script src="system/selecticore-core.js"></script><script>
+let s=SelectiCore.read();const names={math:'Mathematical Reasoning',reading:'Reading',thinking:'Thinking Skills',writing:'Writing'};
+function esc(x){return String(x??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+function retryOne(id){localStorage.setItem('selecticore-retry-ids',JSON.stringify([id]));location.href='test-centre.html'}
+function retry(){const ids=s.errors.filter(e=>e.status!=='Mastered').map(e=>e.id);if(!ids.length){alert('There are no unfixed mistakes to retry.');return}localStorage.setItem('selecticore-retry-ids',JSON.stringify(ids));location.href='test-centre.html'}
+function clearAll(){if(confirm('Clear every saved mistake from this browser?')){s.errors=[];SelectiCore.write(s);renderList();}}
+function setReason(id,reason){const s=SelectiCore.read();const e=s.errors.find(x=>x.id===id);if(e){e.reason=reason;SelectiCore.write(s);render();}}
+function exportData(){const data=JSON.stringify(SelectiCore.read(),null,2),blob=new Blob([data],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='selecticore-progress.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);}
+function renderList(){
+  s=SelectiCore.read();const term=(document.getElementById('search').value||'').toLowerCase();const list=s.errors.filter(e=>(e.question+' '+e.topic+' '+e.subject).toLowerCase().includes(term));
+  const stats=document.getElementById('stats'),unfixed=s.errors.filter(e=>e.status!=='Mastered').length,mastered=s.errors.filter(e=>e.status==='Mastered').length;
+  stats.innerHTML=[['Saved mistakes',s.errors.length],['Unfixed',unfixed],['Mastered',mastered],['Topics',new Set(s.errors.map(e=>e.topic)).size]].map(x=>`<div class="card metric"><div class="label">${x[0]}</div><div class="value">${x[1]}</div></div>`).join('');
+  document.getElementById('list').innerHTML=list.length?list.map(e=>`<div class="error-row"><div style="min-width:0;flex:1"><b>${esc(e.question)}</b><p>${esc(names[e.subject]||e.subject)} • ${esc(e.topic)} • ${esc(e.difficulty||'')}</p><small>Your answer: ${esc(e.your)} • Correct: ${esc(e.correct)} • ${e.time_seconds||0}s • Attempts: ${e.attempts||1}</small><div class="why"><b>Why this happened:</b> ${esc(e.reason||'Review strategy')}<br><b>Strategy:</b> ${esc(e.strategy)}<br>${esc(e.explanation)}</div><div style="margin-top:12px"><button class="btn" onclick="retryOne('${esc(e.id)}')">Retry this question</button></div></div><span class="pill">${esc(e.status||'Unfixed')}</span></div>`).join(''):'<div class="empty"><h2>No matching mistakes</h2><p class="sub">Complete a test and incorrect questions will appear here automatically.</p></div>';
+}
+document.getElementById('search').addEventListener('input',renderList);renderList();
+</script></body></html>

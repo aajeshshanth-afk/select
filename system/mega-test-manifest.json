@@ -1,0 +1,80 @@
+{
+  "version": "v69-production",
+  "tests": {
+    "reading": 4000,
+    "math": 4000,
+    "thinking": 4000,
+    "writing": 4000,
+    "total": 16000
+  },
+  "engine": "mega-test-bank.js",
+  "format": {
+    "reading": {
+      "groups": 17,
+      "answer_parts": 38,
+      "multi_parts": [
+        3,
+        3,
+        4
+      ],
+      "minutes": 45
+    },
+    "math": {
+      "questions": 35,
+      "options": 5,
+      "minutes": 40
+    },
+    "thinking": {
+      "questions": 40,
+      "options": 4,
+      "minutes": 40
+    },
+    "writing": {
+      "tasks": 1,
+      "minutes": 30
+    }
+  },
+  "fixes": [
+    "Writing prompts are fully displayed in Test Centre",
+    "Writing analytics sync with Performance and Readiness",
+    "Thinking stem variation expanded",
+    "Writing prompt combinations expanded",
+    "Error Book reason tagging",
+    "Typing library rebuilt from a large multi-template corpus",
+    "Typing passages now include word count, passage type and target WPM metadata",
+    "Cross-page Typing Lab navigation and progress tracking retained",
+    "Typing corpus v3 with richer context combinations",
+    "Typing analytics schema 12 and completion tracking",
+    "Adaptive Training Engine with weak-topic, error and speed prioritisation",
+    "Typing analytics by difficulty",
+    "Storage schema 13 / selecticore-v12",
+    "Secure session hardening and origin checks",
+    "Security response headers",
+    "Deployment guard requiring DATABASE_URL in production",
+    "Cloudflare Pages Functions + D1 production authentication and progress storage",
+    "Security headers, CSP, HttpOnly sessions and Google ID-token verification"
+  ],
+  "counts": {
+    "typing_lab": 16000,
+    "selective_sections": 16000
+  },
+  "typing_library": {
+    "count": 16000,
+    "minutes": 2,
+    "unique_generation": "deterministic professional corpus v3",
+    "topics": 8,
+    "passage_types": 8,
+    "version": "v69"
+  },
+  "backend": {
+    "version": "v69",
+    "database": "Cloudflare D1",
+    "session": "HttpOnly Secure SameSite=Lax"
+  },
+  "deployment": "Cloudflare Pages + Pages Functions + D1",
+  "difficulty_model": "elite_selective_challenge",
+  "notes": [
+    "Harder multi-step reasoning and closer distractors added in v69 elite layer.",
+    "Original practice content; not official NSW or James Ruse material."
+  ]
+}

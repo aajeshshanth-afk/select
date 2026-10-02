@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SelectiCore — Writing</title>
+<style>
+:root{--navy:#0d1738;--navy2:#18264d;--blue:#315bd6;--purple:#6951e6;--ink:#18213a;--muted:#737c8e;--line:#e1e5ed;--bg:#f5f7fb;--white:#fff;--shadow:0 8px 24px rgba(17,31,67,.07)}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg)}a{text-decoration:none;color:inherit}.app{min-height:100vh;display:flex}.sidebar{width:334px;background:var(--navy);color:#fff;position:fixed;left:0;top:0;bottom:0;padding:26px 18px;z-index:10}.brand{padding:0 18px 26px}.brand strong{display:block;font-size:31px;line-height:1;font-weight:900;letter-spacing:-1.4px}.brand span{display:block;color:#aeb8d1;font-size:16px;margin-top:12px}.nav{display:flex;flex-direction:column;gap:7px}.nav a{display:flex;align-items:center;gap:13px;padding:14px 17px;border-radius:13px;color:#cbd2e3;font-size:16px}.nav a:hover{background:#172549;color:#fff}.nav a.active{background:#293a63;color:#fff}.ico{width:22px;text-align:center;font-size:18px}.main{margin-left:334px;width:calc(100% - 334px);padding:0 32px 40px}.top{height:86px;display:flex;align-items:center;gap:20px}.search{height:56px;flex:1;background:#fff;border:1px solid #dfe4ed;border-radius:17px;box-shadow:0 2px 8px rgba(20,30,60,.03);padding:0 23px;font-size:15px;color:var(--ink);outline:none}.search::placeholder{color:#a0a6b3}.avatar{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#405ee1,#5549df);color:#fff;font-size:20px;font-weight:800}.hero{background:linear-gradient(120deg,#172857 0%,#315bd6 100%);border-radius:23px;padding:43px 40px 39px;color:#fff;box-shadow:0 13px 28px rgba(25,53,120,.12)}.eyebrow{font-size:15px;letter-spacing:1px;color:#cbd5f1;margin-bottom:7px;text-transform:uppercase}.hero h1{font-size:39px;line-height:1.1;margin:0 0 15px;letter-spacing:-1.4px}.hero p{font-size:18px;line-height:1.5;color:#dce4f6;max-width:1000px;margin:0 0 22px}.actions{display:flex;gap:12px;flex-wrap:wrap}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:47px;padding:0 19px;border-radius:13px;background:#3863dc;color:#fff;font-weight:800;border:0;cursor:pointer}.btn.light{background:#fff;color:#26324c}.btn.outline{background:transparent;border:1px solid #dce4f6}.btn:hover{transform:translateY(-1px)}.mt{margin-top:22px}.panel{background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:28px 26px}.panel h2{font-size:27px;letter-spacing:-.7px;margin:0 0 7px}.sub{margin:0;color:var(--muted);font-size:15px;line-height:1.55}.section-head{display:flex;align-items:center;justify-content:space-between;gap:20px}.grid{display:grid;gap:16px}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}.topic{border:1px solid var(--line);border-radius:17px;padding:19px;background:#fff;min-height:130px;transition:.15s;cursor:pointer}.topic:hover{border-color:#b9c6ed;box-shadow:0 8px 20px rgba(49,91,214,.08);transform:translateY(-2px)}.topic .num{font-size:12px;color:#6d79a0;font-weight:800;text-transform:uppercase;letter-spacing:.8px}.topic h3{margin:7px 0 7px;font-size:18px}.topic p{margin:0;color:var(--muted);font-size:14px;line-height:1.45}.topic .open{margin-top:12px;color:#315bd6;font-size:13px;font-weight:800}.step{position:relative;padding:20px;border:1px solid var(--line);border-radius:17px;background:#fff}.step .n{width:31px;height:31px;border-radius:50%;display:grid;place-items:center;background:#eaf0ff;color:#315bd6;font-weight:900}.step h3{margin:12px 0 6px}.step p{margin:0;color:var(--muted);font-size:14px;line-height:1.5}.callout{background:#f1f4ff;border:1px solid #dce4ff;border-radius:17px;padding:20px}.callout strong{color:#2449b8}.example{border-left:4px solid #315bd6;background:#f7f8fc;padding:18px 20px;border-radius:0 15px 15px 0;line-height:1.65}.checklist{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}.check{padding:12px 14px;border:1px solid var(--line);border-radius:12px;font-size:14px;background:#fff}.check::before{content:'✓';color:#315bd6;font-weight:900;margin-right:9px}.bar{height:10px;background:#e8ebf3;border-radius:99px;overflow:hidden;margin-top:14px}.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#3761da,#6951e6);border-radius:99px;transition:.3s}.tabs{display:flex;gap:9px;flex-wrap:wrap;margin:18px 0}.tab{border:1px solid var(--line);background:#fff;padding:10px 14px;border-radius:11px;font-weight:800;color:#596278;cursor:pointer}.tab.active{background:#315bd6;color:#fff;border-color:#315bd6}.lesson{display:none}.lesson.active{display:block}.footer{text-align:center;color:#8a91a0;font-size:13px;padding:28px 0}.tiny{font-size:13px;color:var(--muted)}
+@media(max-width:1050px){.sidebar{width:230px}.main{margin-left:230px;width:calc(100% - 230px)}.g3{grid-template-columns:1fr}.g4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:720px){.sidebar{position:static;width:100%;padding:16px}.app{display:block}.nav{display:grid;grid-template-columns:repeat(2,1fr)}.main{margin-left:0;width:100%;padding:0 14px 30px}.top{height:75px}.brand{padding-bottom:16px}.hero{padding:30px 24px}.hero h1{font-size:32px}.g4,.checklist{grid-template-columns:1fr}.section-head{align-items:flex-start;flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand"><strong>SELECTICORE</strong><span>Selective High School Preparation</span></div>
+  <nav class="nav">
+    <a href="dashboard.html"><span class="ico">⌂</span>Dashboard</a>
+    <a href="learn.html"><span class="ico">▣</span>Learn</a>
+    <a href="strategies.html"><span class="ico">◈</span>Core Strategies</a>
+    <a href="test-centre.html"><span class="ico">◉</span>Test Centre</a>
+    <a href="error-book.html"><span class="ico">▤</span>Error Book</a>
+    <a href="writing-lab.html"><span class="ico">✎</span>Writing Lab</a>
+    <a href="typing-lab.html">⌨️ Typing Lab</a><a href="vocabulary.html"><span class="ico">A</span>Vocabulary</a>
+    <a href="games.html"><span class="ico">◆</span>Games</a>
+    <a href="performance.html"><span class="ico">↗</span>Performance</a><a href="readiness.html"><span class="ico">🎯</span>Readiness</a>
+  <a href="account.html"><span class="ico">👤</span>Account</a></nav>
+</aside>
+<main class="main">
+  <div class="top"><input class="search" placeholder="Search writing lessons, strategies and examples..." id="search"><div class="avatar">SC</div></div>
+  <section class="hero">
+    <div class="eyebrow">WRITING COURSE</div>
+    <h1>✍️ Learn to write with control, creativity and impact.</h1>
+    <p>A complete SelectiCore Writing course: learn the skill, study the strategy, see a worked example, practise it, then apply it in timed Selective-style writing.</p>
+    <div class="actions"><a class="btn light" href="writing-lab.html">Open Writing Lab</a><a class="btn outline" href="test-centre.html">Timed practice</a></div>
+  </section>
+
+  <section class="panel mt">
+    <div class="section-head"><div><h2>Your Writing pathway</h2><p class="sub">The same learning cycle is used throughout the course.</p></div><strong id="progressText">0 / 16 topics completed</strong></div>
+    <div class="bar"><i id="progressBar"></i></div>
+    <div class="grid g4" style="margin-top:18px">
+      <div class="step"><div class="n">1</div><h3>Learn</h3><p>Understand what strong writing does and why it works.</p></div>
+      <div class="step"><div class="n">2</div><h3>Strategy</h3><p>Use a repeatable method you can apply under time pressure.</p></div>
+      <div class="step"><div class="n">3</div><h3>Practise</h3><p>Improve one skill at a time with targeted exercises.</p></div>
+      <div class="step"><div class="n">4</div><h3>Apply</h3><p>Write, edit, review and retry in the Writing Lab.</p></div>
+    </div>
+  </section>
+
+  <section class="panel mt">
+    <div class="section-head"><div><h2>Writing skills library</h2><p class="sub">Select a topic to open its mini-lesson, strategy and worked example.</p></div></div>
+    <div class="grid g4" style="margin-top:20px" id="topics"></div>
+  </section>
+
+  <section class="panel mt" id="lessonPanel">
+    <div class="section-head"><div><h2 id="lessonTitle">Start with a skill</h2><p class="sub" id="lessonIntro">Choose a topic above.</p></div><button class="btn" id="completeBtn" style="display:none">Mark topic complete</button></div>
+    <div id="lessonBody" style="margin-top:20px"></div>
+  </section>
+
+  <section class="panel mt">
+    <h2>30-minute Selective Writing method</h2>
+    <p class="sub">Use the clock deliberately. You are not trying to make every sentence perfect on the first attempt.</p>
+    <div class="grid g4" style="margin-top:20px">
+      <div class="step"><div class="n">5</div><h3>Plan</h3><p>Decode the prompt. Choose the central idea, character, setting, problem and ending.</p></div>
+      <div class="step"><div class="n">18</div><h3>Write</h3><p>Build a clear progression. Prioritise purposeful detail over filler.</p></div>
+      <div class="step"><div class="n">4</div><h3>Strengthen</h3><p>Add precise verbs, sensory detail, sentence variety and stronger transitions.</p></div>
+      <div class="step"><div class="n">3</div><h3>Edit</h3><p>Check spelling, punctuation, grammar, missing words and prompt relevance.</p></div>
+    </div>
+  </section>
+
+  <section class="panel mt">
+    <h2>High-level writing checklist</h2>
+    <p class="sub">Before you submit, ask yourself:</p>
+    <div class="checklist">
+      <div class="check">My response clearly answers the prompt.</div><div class="check">The opening creates a reason to keep reading.</div>
+      <div class="check">Each paragraph has a purpose.</div><div class="check">The problem develops rather than appearing suddenly.</div>
+      <div class="check">My character's feelings are shown through actions and reactions.</div><div class="check">The climax matters to the story.</div>
+      <div class="check">I used precise words instead of unnecessary “big words”.</div><div class="check">I varied sentence length and structure.</div>
+      <div class="check">My ending feels earned, not rushed.</div><div class="check">I checked grammar, spelling and punctuation.</div>
+    </div>
+  </section>
+
+  <section class="panel mt">
+    <h2>Model example: Show, don't tell</h2>
+    <p class="sub">The goal is not to hide the emotion completely. Give the reader evidence.</p>
+    <div class="grid g3" style="margin-top:18px">
+      <div class="callout"><strong>Tell</strong><p>“Mia was terrified.”</p><span class="tiny">The emotion is named, but the reader gets little evidence.</span></div>
+      <div class="callout"><strong>Show</strong><p>“Mia's fingers tightened around the torch. Somewhere beyond the trees, a branch snapped.”</p><span class="tiny">Physical reaction + sensory detail lets the reader infer fear.</span></div>
+      <div class="callout"><strong>Selective-level aim</strong><p>Choose details that also move the scene forward.</p><span class="tiny">Every strong detail should earn its place.</span></div>
+    </div>
+  </section>
+
+  <section class="panel mt">
+    <div class="section-head"><div><h2>Ready to apply it?</h2><p class="sub">Take what you learned into the separate Writing Lab, where you can write, review and improve.</p></div><a class="btn" href="writing-lab.html">Go to Writing Lab →</a></div>
+  </section>
+  <div class="footer">SelectiCore • Writing • Learn. Practise. Master.</div>
+</main></div>
+<script>
+const topics=[
+['Ideas & creativity','Create original ideas that stay tightly connected to the prompt.','Start with the prompt, then add one unusual but believable idea.'],
+['Planning & brainstorming','Turn a prompt into a usable story plan in 3–5 minutes.','Choose a central change: something must happen, matter, and lead to the ending.'],
+['Narrative structure','Build a clear beginning, development, climax and resolution.','Use: hook → build-up → problem → escalation → climax → resolution.'],
+['Characterisation','Reveal personality through choices, actions, dialogue and reactions.','Give the character a goal, obstacle and meaningful decision.'],
+['Setting & atmosphere','Make place and weather influence the feeling of the scene.','Use two or three precise sensory details that match the mood.'],
+['Conflict & escalation','Create a problem that becomes more difficult or urgent.','Raise the stakes in steps instead of jumping straight to the biggest event.'],
+['Climax & resolution','Make the turning point important and the ending satisfying.','The climax should change the situation; the resolution should show the result.'],
+['Description & imagery','Use sensory detail, figurative language and precise observation.','Prefer specific images over lists of adjectives.'],
+['Show, don’t tell','Give evidence of emotion instead of naming every feeling.','Use action + physical reaction + thought + sensory detail selectively.'],
+['Dialogue','Use speech to reveal character and move the plot.','Cut greetings and filler unless they have a purpose.'],
+['Vocabulary & word choice','Choose accurate, vivid words rather than complicated words.','Replace weak verbs first; then check whether each adjective is necessary.'],
+['Sentence variety','Control rhythm with short, compound and complex sentences.','Use a short sentence for impact, then vary the next sentence deliberately.'],
+['Paragraphing & flow','Give each paragraph a clear job and logical progression.','Change paragraph when focus, action, speaker or time shifts.'],
+['Purpose & audience','Stay on task and control tone and style.','Underline the key words in the prompt before planning.'],
+['Grammar, spelling & punctuation','Write accurately without losing time.','Reserve the final minutes for a targeted technical check.'],
+['Tension, pacing & endings','Control what the reader learns and when.','Slow important moments with detail; speed up action with tighter sentences.']
+];
+const lessons={
+'Ideas & creativity':['A strong idea is not random. It is original, relevant and developed.','Strategy: take the obvious idea and add one purposeful complication.','Example: Instead of “a storm hits the school”, make the storm reveal a locked room that has been hidden behind a collapsed wall.','Practice: Write three different complications for the prompt “The message arrived at midnight.”'],
+'Planning & brainstorming':['Planning prevents the middle of the story from becoming a list of events.','Strategy: decide the ending first, then build the problem that makes that ending possible.','Example: Ending = the character returns a lost object. Plan backwards: why is it valuable → why is it lost → how is it found?','Practice: Spend 3 minutes planning a story beginning with “The door was never supposed to be opened.”'],
+'Narrative structure':['A strong story has progression, not just events.','Strategy: hook → build-up → problem → escalation → climax → resolution.','Example: A character hears a noise (hook), investigates (build-up), finds evidence of danger (problem), loses their way (escalation), confronts the source (climax), then understands what happened (resolution).','Practice: Label the six stages for a story you have written before.'],
+'Characterisation':['Readers understand characters through evidence.','Strategy: give the character a goal, an obstacle and a choice that reveals personality.','Example: Instead of “Leo was brave”, show Leo stepping between his younger brother and the danger despite his shaking hands.','Practice: Show that a character is jealous without using the words jealous, envy or angry.'],
+'Setting & atmosphere':['Setting can create pressure and meaning, not just describe a location.','Strategy: choose sensory details that support the emotional direction of the scene.','Example: A flickering hallway light, damp carpet and a door that will not stay closed can create unease before anything frightening happens.','Practice: Describe the same playground as joyful, then as threatening, using different details.'],
+'Conflict & escalation':['A problem becomes interesting when each step creates a harder decision.','Strategy: make each escalation change what the character can do next.','Example: lost phone → dead battery → wrong location → approaching deadline.','Practice: Build four escalating problems from “She missed the bus.”'],
+'Climax & resolution':['The climax is the most important turning point, not simply the loudest event.','Strategy: make the protagonist act, choose or discover something that changes the outcome.','Example: The character finally opens the box and realises the clue inside explains why the journey began.','Practice: Write a two-sentence climax for a mystery story.'],
+'Description & imagery':['Description works best when it is selective and purposeful.','Strategy: use one strong detail from sight, sound and touch rather than ten weak adjectives.','Example: “Rain rattled against the metal roof” creates sound and atmosphere at once.','Practice: Describe an abandoned classroom in 60 words without using the words scary, creepy or old.'],
+'Show, don’t tell':['Showing gives the reader evidence and lets them participate in the meaning.','Strategy: use action, physical reaction, thought or sensory detail.','Example: “Her smile disappeared. She read the message twice, then quietly folded the paper into her pocket.”','Practice: Rewrite “Sam was nervous” without naming the emotion.'],
+'Dialogue':['Dialogue should reveal character or move the story.','Strategy: remove greetings and make each line carry information, conflict or personality.','Example: “You said you checked the door.” “I did. It was locked then.”','Practice: Write six lines of dialogue between two characters who disagree about what to do next.'],
+'Vocabulary & word choice':['Precise vocabulary creates clarity and imagery.','Strategy: improve weak verbs before adding fancy adjectives.','Example: walked → crept, trudged, wandered, marched, staggered, depending on meaning.','Practice: Replace walked, said and looked with three accurate alternatives for each.'],
+'Sentence variety':['Sentence control affects pace and emphasis.','Strategy: mix sentence lengths deliberately.','Example: “The lock clicked. Nothing happened. Then the room breathed.” Short sentences can create suspense.','Practice: Rewrite a paragraph using one short sentence for impact and one longer sentence for flow.'],
+'Paragraphing & flow':['Paragraphs help the reader follow changes in focus and action.','Strategy: give each paragraph one main job.','Example: one paragraph introduces the setting; the next introduces the problem; the next escalates it.','Practice: Take a six-event story and group the events into four purposeful paragraphs.'],
+'Purpose & audience':['A strong response can still lose impact if it ignores the prompt.','Strategy: identify what the prompt requires, what tone it suggests and what must appear.','Example: A suspense prompt needs controlled revelation; a humorous prompt needs a different rhythm and tone.','Practice: Underline the three most important words in a prompt and explain what each requires.'],
+'Grammar, spelling & punctuation':['Technical accuracy protects the quality of your ideas.','Strategy: edit in passes instead of rereading randomly.','Example: Pass 1 = sentence boundaries; Pass 2 = punctuation; Pass 3 = spelling; Pass 4 = awkward or repeated wording.','Practice: Take one paragraph and perform all four editing passes.'],
+'Tension, pacing & endings':['Pacing controls how quickly the reader experiences the story.','Strategy: slow key moments with precise detail and speed up action with tighter sentences.','Example: End by echoing an image or idea from the opening, but show how its meaning has changed.','Practice: Write an opening and ending that share the same object but give it a different meaning.']};
+const topicEl=document.getElementById('topics');
+let current='';
+const done=JSON.parse(localStorage.getItem('selecticoreWritingDone')||'[]');
+function renderTopics(){topicEl.innerHTML=topics.map((t,i)=>`<div class="topic" data-title="${t[0].toLowerCase()}"><div class="num">Topic ${i+1}${done.includes(t[0])?' • ✓ complete':''}</div><h3>${t[0]}</h3><p>${t[1]}</p><div class="open">Open lesson →</div></div>`).join('');
+[...topicEl.children].forEach((el,i)=>el.onclick=()=>openLesson(topics[i][0])); updateProgress();}
+function openLesson(name){current=name;const t=topics.find(x=>x[0]===name);const l=lessons[name];document.getElementById('lessonTitle').textContent=name;document.getElementById('lessonIntro').textContent=t[1];document.getElementById('completeBtn').style.display='inline-flex';document.getElementById('completeBtn').textContent=done.includes(name)?'Completed ✓':'Mark topic complete';document.getElementById('lessonBody').innerHTML=`<div class="tabs"><button class="tab active">Learn</button><button class="tab">Strategy</button><button class="tab">Worked example</button><button class="tab">Practice</button></div><div class="lesson active"><div class="callout"><strong>What this skill means</strong><p>${l[0]}</p></div><div class="example" style="margin-top:16px"><strong>Strategy</strong><br>${l[1]}</div><div class="example" style="margin-top:16px"><strong>Worked example</strong><br>${l[2]}</div><div class="callout" style="margin-top:16px"><strong>Try it</strong><p>${l[3]}</p></div></div>`;document.querySelectorAll('.tab').forEach((b,i)=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));b.classList.add('active')});document.getElementById('lessonPanel').scrollIntoView({behavior:'smooth',block:'start'});}
+document.getElementById('completeBtn').onclick=()=>{if(!current)return;if(!done.includes(current))done.push(current);localStorage.setItem('selecticoreWritingDone',JSON.stringify(done));renderTopics();openLesson(current)};
+function updateProgress(){const p=Math.round(done.length/topics.length*100);document.getElementById('progressText').textContent=`${done.length} / ${topics.length} topics completed`;document.getElementById('progressBar').style.width=p+'%'}
+document.getElementById('search').addEventListener('input',e=>{const q=e.target.value.toLowerCase();[...topicEl.children].forEach(el=>el.style.display=el.dataset.title.includes(q)?'block':'none')});
+renderTopics();
+</script>
+</body></html>
